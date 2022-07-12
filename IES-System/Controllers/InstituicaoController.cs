@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-<<<<<<< HEAD
-=======
-using System.Threading.Tasks;
->>>>>>> parent of e96acab (feat: Implementation of data entry fields in the controller)
 using IES_System.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,42 +8,29 @@ namespace IES_System.Controllers
 {
     public class InstituicaoController : Controller
     {
-
         private static IList<Instituicao> instituicoes = new List<Instituicao>() {
             new Instituicao()
             {
                 InstituicaoID = 1,
-                Nome = "UniSanta",
-                Endereco = "São Paulo"
+                Nome = "Estácio",
+                Endereco = "Fortaleza"
             },
             new Instituicao()
             {
                 InstituicaoID = 2,
-                Nome = "UniParaná",
-                Endereco = "Paraná"
+                Nome = "Unifor",
+                Endereco = "Fortaleza"
             },
             new Instituicao()
             {
                 InstituicaoID = 3,
-                Nome = "UniSãoPaulo",
-                Endereco = "São Paulo"
-            },
-            new Instituicao()
-            {
-                InstituicaoID = 4,
-                Nome = "UniSulgrandense",
-                Endereco = "Rio Grande do Sul"
-            },
-            new Instituicao()
-            {
-                InstituicaoID = 5,
-                Nome = "UniCarioca",
-                Endereco = "Rio de Janeiro"
+                Nome = "UniFametro",
+                Endereco = "Fortaleza"
             },
         };
 
-<<<<<<< HEAD
-        public IActionResult Create()
+        //Métodos Create
+        public ActionResult Create()
         {
             return View();
         }
@@ -59,13 +42,26 @@ namespace IES_System.Controllers
             instituicoes.Add(instituicao);
             instituicao.InstituicaoID = instituicoes.Select(i => i.InstituicaoID).Max() + 1;
             return RedirectToAction("Index");
-        }        
+        }       
+        
+        //Métodos Update
+        public ActionResult Edit(long id)
+        {
+            return View(instituicoes.Where(m => m.InstituicaoID == id).First());
+        }
 
-=======
->>>>>>> parent of e96acab (feat: Implementation of data entry fields in the controller)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Instituicao instituicao)
+        {
+            instituicoes.Remove(instituicoes.Where(c => c.InstituicaoID == instituicao.InstituicaoID).First());
+            instituicoes.Add(instituicao);
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Index()
         {
-            return View(instituicoes);
+            return View(instituicoes.OrderBy(i => i.Nome));
         }
     }
 }
