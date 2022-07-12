@@ -29,8 +29,12 @@ namespace IES_System.Controllers
             },
         };
 
+<<<<<<< HEAD
         //Métodos Create
         public ActionResult Create()
+=======
+        public IActionResult Create()
+>>>>>>> parent of f505fb4 (feat: Implementation of the action that receives the model to insert the Create view)
         {
             return View();
         }
