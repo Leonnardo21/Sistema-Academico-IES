@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using IES_System.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,39 +7,32 @@ namespace IES_System.Controllers
 {
     public class InstituicaoController : Controller
     {
-
         private static IList<Instituicao> instituicoes = new List<Instituicao>() {
             new Instituicao()
             {
                 InstituicaoID = 1,
-                Nome = "UniSanta",
-                Endereco = "São Paulo"
+                Nome = "Estácio",
+                Endereco = "Fortaleza"
             },
             new Instituicao()
             {
                 InstituicaoID = 2,
-                Nome = "UniParaná",
-                Endereco = "Paraná"
+                Nome = "Unifor",
+                Endereco = "Fortaleza"
             },
             new Instituicao()
             {
                 InstituicaoID = 3,
-                Nome = "UniSãoPaulo",
-                Endereco = "São Paulo"
-            },
-            new Instituicao()
-            {
-                InstituicaoID = 4,
-                Nome = "UniSulgrandense",
-                Endereco = "Rio Grande do Sul"
-            },
-            new Instituicao()
-            {
-                InstituicaoID = 5,
-                Nome = "UniCarioca",
-                Endereco = "Rio de Janeiro"
+                Nome = "UniFametro",
+                Endereco = "Fortaleza"
             },
         };
+
+        //GET: Create
+        public ActionResult Create()
+        {
+            return View();
+        }
 
         public IActionResult Index()
         {
