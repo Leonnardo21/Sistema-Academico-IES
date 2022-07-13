@@ -29,12 +29,8 @@ namespace IES_System.Controllers
             },
         };
 
-<<<<<<< HEAD
-        //Métodos Create
+
         public ActionResult Create()
-=======
-        public IActionResult Create()
->>>>>>> parent of f505fb4 (feat: Implementation of the action that receives the model to insert the Create view)
         {
             return View();
         }
@@ -46,12 +42,18 @@ namespace IES_System.Controllers
             instituicoes.Add(instituicao);
             instituicao.InstituicaoID = instituicoes.Select(i => i.InstituicaoID).Max() + 1;
             return RedirectToAction("Index");
-        }       
-        
+        }
+
         //Métodos Update
         public ActionResult Edit(long id)
         {
             return View(instituicoes.Where(m => m.InstituicaoID == id).First());
+        }
+
+        //Método Read
+        public ActionResult Details(long id)
+        {
+            return View(instituicoes.Where(i => i.InstituicaoID == id).First());
         }
 
         [HttpPost]
