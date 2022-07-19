@@ -29,7 +29,7 @@ namespace IES_System.Controllers
             },
         };
 
-
+        //Método Create
         public ActionResult Create()
         {
             return View();
@@ -44,16 +44,16 @@ namespace IES_System.Controllers
             return RedirectToAction("Index");
         }
 
-        //Métodos Update
-        public ActionResult Edit(long id)
-        {
-            return View(instituicoes.Where(m => m.InstituicaoID == id).First());
-        }
-
         //Método Read
         public ActionResult Details(long id)
         {
             return View(instituicoes.Where(i => i.InstituicaoID == id).First());
+        }
+
+        //Método Update
+        public ActionResult Edit(long id)
+        {
+            return View(instituicoes.Where(m => m.InstituicaoID == id).First());
         }
 
         [HttpPost]
@@ -64,6 +64,19 @@ namespace IES_System.Controllers
             instituicoes.Add(instituicao);
             return RedirectToAction("Index");
         }
+
+        //Método Delete
+        public ActionResult Delete(long id) {
+            return View(instituicoes.Where(i => i.InstituicaoID == id).First());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Instituicao instituicao) {
+            instituicoes.Remove(instituicoes.Where(i => i.InstituicaoID == instituicao.InstituicaoID).First());
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult Index()
         {
